@@ -16,7 +16,7 @@ router.get('/login/failed', (req, res) => {
 
 router.get('/callback',
     passport.authenticate('google', {
-        session: false,
+        // session: false,
         failureRedirect: '/api/oauth/login/failed',
     }),
     (req, res) => {
