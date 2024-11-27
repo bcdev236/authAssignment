@@ -12,7 +12,7 @@ const Navbar = () => {
     localStorage.removeItem('user');
     setUser(null);
     window.open(
-        `http://localhost:4000/api/oauth/logout`,
+        `https://auth-assignment-server-pi.vercel.app/api/oauth/logout`,
         '_self'
     );
   };

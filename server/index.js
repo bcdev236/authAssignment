@@ -40,7 +40,7 @@ then(() => console.log("Conneted to MongoDB"))
 });
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://auth-assignment-client.vercel.app',
     credentials: true,
 }));
 
