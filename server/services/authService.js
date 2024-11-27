@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const User = require("../models/user");
 const { createToken } = require('./jwtService')
 
-const session = require('express-session'); 
 
 async function registerUser(req, res) {
     
@@ -44,12 +43,6 @@ async function loginUser(req, res) {
 
         const { password, ...others } = user._doc;
 
-        // req.session.user = {
-        //     id: others._id,
-        //     name: others.name,
-        //     email: others.email,
-        //     token: accessToken,
-        // };
         const userDetails = {
             name: others.name,
             email: others.email,

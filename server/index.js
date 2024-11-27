@@ -1,33 +1,23 @@
 const express = require('express');
-const dotenv = require("dotenv");
 const cors = require('cors');
-
+const dotenv = require("dotenv");
 dotenv.config();
+
+const session = require('express-session'); 
+const passport = require('passport');
+const passportSetup = require('./passport')
 
 const authRoute = require('./routes/auth');
 const oAuthRoute = require('./routes/oAuth');
 
 const app = express();
 
-// test
-// const cookieSession = require('cookie-session');
-const session = require('express-session'); 
-const passport = require('passport');
-const passportSetup = require('./passport')
-
-// app.use(
-//   cookieSession({
-//     name: "session",
-//     keys: ["cyberwolve"],
-//     maxAge: 24*60*60*1000,
-//   })  
-// );
 
 app.use(
   session({
-      secret: 'cyberwolve', // Replace with a strong secret key
-      resave: false, // Prevent resaving session if unmodified
-      saveUninitialized: false, // Do not save uninitialized sessions
+      secret: process.env.SESSION_SECRETKEY, 
+      resave: false,
+      saveUninitialized: false, 
       cookie: {
           maxAge: 24 * 60 * 60 * 1000, // 1 day
           secure: false,
@@ -36,17 +26,11 @@ app.use(
   })
 );
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-// test close
-
-
 const { connectToMongoDB } = require('./config');
-
-
 
 //Connecting to Database
 connectToMongoDB().

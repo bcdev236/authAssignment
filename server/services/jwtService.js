@@ -8,7 +8,7 @@ const createToken = (user) => {
             email: user.email
         },
         process.env.JWT_SECRETKEY,
-        {expiresIn: "3d"}
+        {expiresIn: "1d"}
     );
 
     return accessToken;
