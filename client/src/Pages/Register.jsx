@@ -24,10 +24,16 @@ const Register = () => {
                 email: email,
                 password: password,
             });
-            console.log(response);
-            if(response) setMessage("User created! Please login to continue.")
+            if(response.status === 201){
+                setError("");
+                setMessage(`${response.data.message}! Please login to continue.`);
+            }
         } catch (err) {
-            setError("Something went wrong, please try again");
+            if (err.response && err.response.data && err.response.data.error) {
+                setError(err.response.data.error);
+            } else {
+                setError("Something went wrong, please try again");
+            }
         }
     };
     

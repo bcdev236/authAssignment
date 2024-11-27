@@ -10,7 +10,7 @@ async function handleRegister(req, res) {
 
     try {
         const result = await registerUser(req);
-        res.status(201).json(result);
+        res.status(201).json({message: "User registered successfully", result});
     } catch (err) {
         if (err.message === "Email already exists") {
             res.status(400).json({ error: err.message });
@@ -28,7 +28,7 @@ async function handleLogin(req, res) {
 
     try {
         const result = await loginUser(req);
-        res.status(200).json({user: result});
+        res.status(200).json({message: "Login Successful", user: result});
     } catch (err) {
         if (err.message === "Wrong Credentials") {
             res.status(400).json({ error: err.message });

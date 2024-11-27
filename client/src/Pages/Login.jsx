@@ -19,6 +19,7 @@ const Login = () => {
         try {
             const response = await publicRequest.post('/api/auth/login', { email: email, password: password });
             const user = response.data.user;
+            console.log(response.data.message);
 
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user);
@@ -26,7 +27,12 @@ const Login = () => {
             navigate('/');
             
         } catch (err) {
-            setError("Wrong Credentials");
+            // setError("Wrong Credentials");
+            if (err.response && err.response.data && err.response.data.error) {
+                setError(err.response.data.error);
+            } else {
+                setError("Something went wrong, please try again");
+            }
         }
     };
 
