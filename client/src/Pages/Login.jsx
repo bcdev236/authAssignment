@@ -38,7 +38,7 @@ const Login = () => {
 
     const googleAuth = async (e) => {
         window.open(
-            `https://auth-assignment-server-pi.vercel.app/api/oauth/callback`,
+            `https://auth-assignment-server-pi.vercel.app/api/oauth/google`,
             '_self'
         );
     };
